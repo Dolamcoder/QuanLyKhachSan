@@ -23,8 +23,9 @@ public class DangKyDao {
 
             ResultSet rs = stmt.executeQuery();
             if (rs.next()) {
-                return true;  // Tồn tại tài khoản hoặc email
+                return true;  
             }
+            JDBC.closeConnection(conn);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -34,14 +35,12 @@ public class DangKyDao {
     String sql = "INSERT INTO users (username, password, email) VALUES (?, ?, ?)";
 
     try (PreparedStatement stmt = conn.prepareStatement(sql)) {
-        // Gán giá trị vào các tham số của câu lệnh SQL
-        stmt.setString(1, user);  // Gán tên người dùng
-        stmt.setString(2, pass);  // Gán mật khẩu
-        stmt.setString(3, email); // Gán email
+        stmt.setString(1, user);  
+        stmt.setString(2, pass);  
+        stmt.setString(3, email); 
 
-        // Thực thi câu lệnh SQL
         int rowsInserted = stmt.executeUpdate();
-
+        JDBC.closeConnection(conn);
         if(rowsInserted>0) return true;
     } catch (Exception e) {
         e.printStackTrace();

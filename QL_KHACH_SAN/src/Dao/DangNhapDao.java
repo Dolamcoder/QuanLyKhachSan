@@ -18,9 +18,8 @@ public class DangNhapDao {
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, username);
             stmt.setString(2, password);
-
             ResultSet rs = stmt.executeQuery();
-            return rs.next(); // Trả về true nếu tìm thấy bản ghi
+            return rs.next(); 
         } catch (Exception e) {
             e.printStackTrace();
             return false;

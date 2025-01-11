@@ -27,8 +27,8 @@ public class SuaPhongController implements ActionListener {
     public void actionPerformed(ActionEvent e) {
        String src=e.getActionCommand();
        if(src.equals("Xác nhận")){
-         thaoTacCSDL();
-           sp.close();
+           thaoTacCSDL();
+        
        }
        else if(src.equals("Huỷ")){
            sp.close();
@@ -50,10 +50,23 @@ public class SuaPhongController implements ActionListener {
         int bed = sp.getBed();
         int floor = sp.getFloor();
         double price = sp.getPrice();
+        if(bed==0){
+            JOptionPane.showMessageDialog(sp, "Không được để giường trống hoặc nhập sai dữ liệu");
+            return;
+        }
+        if(floor==0){
+            JOptionPane.showMessageDialog(sp, "Không được để tầng trống hoặc nhập sai dữ liệu");
+            return;
+        }
+        if(price==0){
+            JOptionPane.showMessageDialog(sp, "Không được để giá phòng trống hoặc nhập sai dữ liệu");
+            return;
+        }
         Room updatedRoom = suaPhong(id, bed, floor, price);
         if(updatedRoom!=null){
             if(dao.update(updatedRoom)>0){
             JOptionPane.showMessageDialog(sp,"Sửa phòng thành công");
+            sp.close();
             return;
             }
         }

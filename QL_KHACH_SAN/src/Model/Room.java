@@ -82,4 +82,16 @@ public class Room {
         }
         return "Chưa Sẵn Sàng";
     }
+
+   @Override
+public String toString() {
+    return
+           "  Mã Phòng  : " + idPhong + "\n" +
+           "  Số Giường : " + bed + "\n" +
+           "  Số Tầng    : " + floor + "\n" +
+           "  Tráng Thái : " + this.trangThai() + "\n" +
+           "  Giá Thuê   : " + price + "\n" ;
+}
+
+    
 }

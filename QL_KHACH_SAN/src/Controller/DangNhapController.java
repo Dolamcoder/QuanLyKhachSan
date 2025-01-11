@@ -5,6 +5,7 @@ import Dao.DangNhapDao;
 import View.DangKyView;
 import View.DangNhapView;
 import View.GiaoDienView;
+import View.QuenMatKhauView;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
@@ -28,28 +29,24 @@ public void actionPerformed(ActionEvent e) {
     if (src.equals("Xac Nhan")) {
         String username = dn.getUsername();
         String password = dn.getPassword();
-
-        // Kiểm tra xem người dùng nhập liệu hợp lệ
         if (username.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(dn, "Vui lòng nhập đầy đủ thông tin!");
-            return;  // Dừng hàm nếu chưa nhập đầy đủ thông tin
+            return;  
         }
-
-        // Kiểm tra thông tin người dùng
         if (dnDao.validateUser(username, password)) {
             JOptionPane.showMessageDialog(dn, "Đăng nhập thành công!");
-            new GiaoDienView();  // Mở giao diện chính
-            dn.close();  // Đóng cửa sổ đăng nhập một cách an toàn
+            new GiaoDienView(); 
+            dn.close(); 
         } else {
             JOptionPane.showMessageDialog(dn, "Sai tài khoản hoặc mật khẩu!");
         }
     } else if (src.equals("Đang Ky")) {
-        new DangKyView();  // Mở giao diện đăng ký
+        new DangKyView();  
+      
+    }
+    else if(src.equals("Quen mat khau")){
+        new QuenMatKhauView();
+        dn.close();
     }
 }
-
-
-
-
-  
 }

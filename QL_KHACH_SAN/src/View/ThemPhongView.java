@@ -27,15 +27,15 @@ public class ThemPhongView extends JFrame{
         this.setSize(400, 300);
 
         // Sử dụng BorderLayout
-        this.setLayout(new BorderLayout(10, 10)); // Khoảng cách giữa các vùng
+        this.setLayout(new BorderLayout(10, 10)); 
 
         // Panel chính chứa các trường nhập liệu
         JPanel inputPanel = new JPanel();
-        inputPanel.setLayout(new GridBagLayout()); // Sử dụng GridBagLayout để bố trí linh hoạt
-        inputPanel.setBackground(new Color(240, 248, 255)); // Màu nền nhạt
+        inputPanel.setLayout(new GridBagLayout()); 
+        inputPanel.setBackground(new Color(240, 248, 255)); 
 
         GridBagConstraints gbc = new GridBagConstraints();
-        gbc.insets = new Insets(5, 5, 5, 5); // Khoảng cách giữa các thành phần
+        gbc.insets = new Insets(5, 5, 5, 5); 
         gbc.fill = GridBagConstraints.HORIZONTAL;
 
         // Các nhãn và trường nhập liệu
@@ -76,28 +76,27 @@ public class ThemPhongView extends JFrame{
         // Panel chứa các nút
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-        buttonPanel.setBackground(new Color(230, 230, 250)); // Màu nền nhạt
+        buttonPanel.setBackground(new Color(230, 230, 250)); 
 
         confirmButton = new JButton("Xác nhận");
         confirmButton.addActionListener(ac);
-        confirmButton.setBackground(new Color(144, 238, 144)); // Màu xanh nhạt
-        confirmButton.setFocusPainted(false);
+        confirmButton.setBackground(new Color(144, 238, 144)); 
         cancelButton = new JButton("Hủy");
         cancelButton.addActionListener(ac);
-        cancelButton.setBackground(new Color(255, 182, 193)); // Màu hồng nhạt
+        cancelButton.setBackground(new Color(255, 182, 193)); 
         cancelButton.setFocusPainted(false);
 
         buttonPanel.add(confirmButton);
         buttonPanel.add(cancelButton);
 
-        // Thêm viền và tiêu đề cho inputPanel
+       
         inputPanel.setBorder(BorderFactory.createTitledBorder(BorderFactory.createLineBorder(new Color(70, 130, 180)), "Thông tin phòng", 0, 0, new Font("Arial", Font.BOLD, 14), new Color(70, 130, 180)));
 
-        // Thêm các thành phần vào JFrame
+     
        this.add(inputPanel, BorderLayout.CENTER);
         this.add(buttonPanel, BorderLayout.SOUTH);
 
-        // Hiển thị JFrame
+       
         this.setVisible(true);
         this.setLocationRelativeTo(null);
     }
@@ -114,8 +113,6 @@ public class ThemPhongView extends JFrame{
         int bed = 0;
         int floor = 0;
         double price = 0.0;
-
-    // Kiểm tra ID phòng
         if (idPhong.isEmpty()) {
                  JOptionPane.showMessageDialog(this, "Không được để trống ID phòng");
                 return null;
@@ -125,7 +122,7 @@ public class ThemPhongView extends JFrame{
             return null;
         }
             try {
-        // Chuyển đổi các giá trị từ chuỗi sang số
+        
                 bed = Integer.parseInt(this.bedsField.getText().trim());
                 floor = Integer.parseInt(this.floorField.getText().trim());
                 price = Double.parseDouble(this.priceField.getText().trim());
@@ -133,13 +130,11 @@ public class ThemPhongView extends JFrame{
                 JOptionPane.showMessageDialog(this, "Vui lòng nhập đúng định dạng số cho Bed, Floor, và Price");
                  return null;
             }
-
-    // Tạo đối tượng Room khi không có lỗi
             Room room = new Room(idPhong, bed, floor, price);
             return room;
         }
    public void close() {
-    this.dispose(); // Đóng frame hiện tại
+    this.dispose(); 
     }
 }
 

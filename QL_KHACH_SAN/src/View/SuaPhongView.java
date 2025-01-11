@@ -2,6 +2,7 @@ package View;
 
 import Controller.SuaPhongController;
 import Dao.RoomDao;
+import Model.QuanLy;
 import Model.Room;
 import java.awt.*;
 import java.awt.event.ActionListener;
@@ -15,6 +16,7 @@ public class SuaPhongView extends JFrame {
     private RoomDao dao;
     private ArrayList<String> roomId;
     ActionListener ac;
+    QuanLy ql=new QuanLy();
     public SuaPhongView() {
         // Khởi tạo RoomDao
         dao = new RoomDao();
@@ -23,6 +25,9 @@ public class SuaPhongView extends JFrame {
         init();
         confirmButton.addActionListener(ac);
         cancelButton.addActionListener(ac);
+        ql.setDanhSachRoom(dao.selectAll());
+        idComboBox.addActionListener(e -> suaPhong());  // Gọi lại khi ID thay đổi
+        this.suaPhong();  // Đảm bảo dữ liệu được hiển thị khi form khởi tạo
     }
 
    private void init() {
@@ -85,17 +90,16 @@ public class SuaPhongView extends JFrame {
     // Panel chứa các nút
     JPanel buttonPanel = new JPanel();
     buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 10, 10));
-    buttonPanel.setBackground(new Color(230, 230, 250)); // Màu nền nhạt
-
+    buttonPanel.setBackground(new Color(230, 230, 250)); 
     confirmButton = new JButton("Xác nhận");
     confirmButton.setBackground(new Color(144, 238, 144));
     confirmButton.setFocusPainted(false);
-    confirmButton.setActionCommand("Xác nhận"); // Set action command
+    confirmButton.setActionCommand("Xác nhận"); 
 
     cancelButton = new JButton("Hủy");
     cancelButton.setBackground(new Color(255, 182, 193));
     cancelButton.setFocusPainted(false);
-    cancelButton.setActionCommand("Huỷ"); // Set action command
+    cancelButton.setActionCommand("Huỷ"); 
 
     buttonPanel.add(confirmButton);
     buttonPanel.add(cancelButton);
@@ -109,7 +113,7 @@ public class SuaPhongView extends JFrame {
             new Color(70, 130, 180)
     ));
 
-    // Thêm các thành phần vào JFrame
+  
     this.add(inputPanel, BorderLayout.CENTER);
     this.add(buttonPanel, BorderLayout.SOUTH);
 
@@ -135,13 +139,27 @@ public class SuaPhongView extends JFrame {
         return priceField;
     }
     public int getBed(){
-        return Integer.parseInt(bedsField.getText());
+        try{
+        int bed=Integer.parseInt(bedsField.getText());
+        return bed;
+        } catch (Exception e){
+           return 0;
+        }
+       
     }
     public int getFloor(){
-        return Integer.parseInt(floorField.getText());
+       try{
+        return Integer.parseInt(floorField.getText().trim());
+       } catch(Exception e){
+           return 0;
+       }
     }
     public double getPrice(){
-        return Double.parseDouble(priceField.getText());
+        try{
+        return Double.parseDouble(priceField.getText().trim());
+        }catch(Exception e){
+            return 0;
+        }
     }
     public void close() {
         this.dispose();
@@ -150,4 +168,11 @@ public class SuaPhongView extends JFrame {
         return (String)idComboBox.getSelectedItem();
     }
     
+    public void suaPhong(){
+        String  id=getID();
+        Room room=ql.timKiemPhong(id);
+        this.getBedsField().setText(room.getBed()+"");
+        this.getFloorField().setText(room.getFloor()+"");
+        this.getPriceField().setText(""+room.getPrice());
+    }
 }

@@ -5,15 +5,10 @@
 package Dao;
 
 import java.util.ArrayList;
-
-/**
- *
- * @author Admin
- */
 public interface DaoInterface<T> {
     public int insert(T t);
     public int update(T t);
-    public int delete(T t);
+    public int delete(String id);
     public ArrayList<T> selectAll();
     public T slectById(T t);
     public ArrayList<T> selectBycondition(String condition);

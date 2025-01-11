@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/QL_KHACH_SAN/src/Model/QuanLy.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/QL_KHACH_SAN/src/Test/main.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/QL_KHACH_SAN/src/Controller/ThemPhongController.java</file>
-            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/QL_KHACH_SAN/src/View/ThemPhongView.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/QL_KHACH_SAN/src/Dao/DangKyDao.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/QL_KHACH_SAN/src/View/SuaKhachHang.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/QL_KHACH_SAN/src/View/GiaoDienView.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/QL_KHACH_SAN/src/View/QuenMatKhauView.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/QL_KHACH_SAN/src/View/DoanhThuView.java</file>
+            <file>file:/C:/Users/Admin/Documents/NetBeansProjects/QL_KHACH_SAN/src/Dao/BillDao.java</file>
         </group>
     </open-files>
 </project-private>

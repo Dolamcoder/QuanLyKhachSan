@@ -13,11 +13,11 @@
     import javax.swing.table.JTableHeader;
 
     public class DSPhongView extends JPanel {
-        // Các thành phần giao diện
-        JPanel danhMuc = new JPanel(); // Panel chứa thanh danh mục
-        JComboBox<String> ds, dsSort; // ComboBox cho danh sách và sắp xếp
-        JButton tk, add, clear, update; // Các nút chức năng
-        JPanel bangPanel = new JPanel(); // Panel chứa bảng
+        
+        JPanel danhMuc = new JPanel(); 
+        JComboBox<String> ds, dsSort; 
+        JButton tk, add, clear, update; 
+        JPanel bangPanel = new JPanel(); 
         ActionListener ac;
         RoomDao dao=new RoomDao();
         JScrollPane table;
@@ -31,9 +31,9 @@
 
         bangPanel.add(table, BorderLayout.CENTER);
 
-        ac = new DSPController(this);  // Tạo controller để xử lý sự kiện
+        ac = new DSPController(this); 
 
-        // Gắn sự kiện cho các nút
+       
         tk.addActionListener(ac);
         add.addActionListener(ac);
         clear.addActionListener(ac);
@@ -42,7 +42,6 @@
         dsSort.setActionCommand("sort");
         ds.addActionListener(ac);
         dsSort.addActionListener(ac);
-
         this.setLayout(new BorderLayout());
         this.setSize(742, 452);
         this.setVisible(true);
@@ -51,30 +50,22 @@
         Border blueBorder = BorderFactory.createLineBorder(Color.BLUE, 4);
         this.setBorder(BorderFactory.createLineBorder(new Color(0, 51, 102), 4));
     }
-
-
-        // Khởi tạo các thành phần giao diện
         public void init() {
-            // Tạo ComboBox cho danh sách
             String danhSach[] = {"Danh Sách", "Phòng Chưa Đặt", "Phòng Đã Đặt"};
             ds = new JComboBox<>(danhSach);
-
-            // Tạo ComboBox cho sắp xếp
             String sort[] = {"Sort theo giá", "Sort theo giường", "Sort theo tầng"};
             dsSort = new JComboBox<>(sort);
-
-            // Tạo các nút
             tk = new JButton("Tìm kiếm phòng");
             add = new JButton("Thêm phòng");
             clear = new JButton("Xoá phòng");
             update = new JButton("Sửa Thông tin");
 
-            Color lightBlue = new Color(173, 216, 230); // Màu xanh dương nhạt
-        Color darkBlue = new Color(34, 45, 65); // Màu xanh đậm
-        Color darkText = new Color(50, 50, 50); // Màu chữ đậm
+            Color lightBlue = new Color(173, 216, 230); 
+        Color darkBlue = new Color(34, 45, 65); 
+        Color darkText = new Color(50, 50, 50); 
 
-        tk.setBackground(lightBlue); // Màu nền xanh dương nhạt
-        tk.setForeground(darkBlue); // Màu chữ xanh đậm
+        tk.setBackground(lightBlue); 
+        tk.setForeground(darkBlue); 
         tk.setFocusPainted(false);
 
         add.setBackground(lightBlue);
@@ -93,7 +84,7 @@
         ds.setBackground(lightBlue);
         ds.setForeground(darkText);
 
-            // Thêm các thành phần vào panel danh mục
+           
             danhMuc.add(ds);
             danhMuc.add(dsSort);
             danhMuc.add(tk);
@@ -101,23 +92,17 @@
             danhMuc.add(clear);
             danhMuc.add(update);
         }
-
-        // Phương thức hiển thị bảng
-       // Cải thiện giao diện bảng
-    // Cải thiện giao diện bảng
     public  JScrollPane displayTable() {
 
         String[] columnNames = {"ID_Phong", "Bed", "Floor", "Status", "Price"};
-
-        // Tạo mô hình bảng không chỉnh sửa
         DefaultTableModel tableModel = new DefaultTableModel(columnNames, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
-                return false; // Tắt chỉnh sửa
+                return false; 
             }
         };
 
-        // Thêm dữ liệu vào bảng
+       
         for (Room room : this.dsPhong) {
             Object[] rowData = {
                 room.getIdPhong(),
@@ -129,12 +114,10 @@
             tableModel.addRow(rowData);
         }
 
-        // Tạo JTable và gắn mô hình dữ liệu
         JTable table = new JTable(tableModel);
 
-        // Thay đổi phông chữ và kích thước tiêu đề
+       
         JTableHeader header = table.getTableHeader();
-       // Thay đổi phông chữ và màu sắc tiêu đề
         header.setFont(new Font("Verdana", Font.BOLD, 18)); // Phông chữ Verdana, in đậm, kích thước lớn hơn
         header.setBackground(new Color(34, 45, 65)); // Màu nền xanh đậm hiện đại
         header.setForeground(new Color(220, 220, 220)); // Màu chữ xám nhạt, tạo độ tương phản tốt
@@ -196,6 +179,10 @@
             return dsSort;
         }
 
+    public ArrayList<Room> getDsPhong() {
+        return dsPhong;
+    }
+
 public void updateTable(ArrayList<Room> rooms) {
     this.dsPhong = rooms; // Cập nhật danh sách phòng mới
 
@@ -204,8 +191,14 @@ public void updateTable(ArrayList<Room> rooms) {
     bangPanel.revalidate();
     bangPanel.repaint();
 
-    // Thêm bảng mới vào panel
-    bangPanel.add(displayTable(), BorderLayout.CENTER);
+    // Tạo bảng mới
+    JScrollPane newTable = displayTable();
+    bangPanel.add(newTable, BorderLayout.CENTER);
 }
 
+    public JTable getTable() {
+         JScrollPane scrollPane = (JScrollPane) bangPanel.getComponent(0); 
+    return (JTable) scrollPane.getViewport().getView(); 
+    }
+    
     }

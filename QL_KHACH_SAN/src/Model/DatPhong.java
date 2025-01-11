@@ -5,6 +5,7 @@
 package Model;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 /**
  *
@@ -12,31 +13,74 @@ import java.time.LocalDate;
  */
 public class DatPhong {
     private String idPhong, idKH, name;
-    LocalDate ngayDat=LocalDate.now();
+    private int idDP;
+    Date ngayDat, ngayTra;
     private int thoiGianThue;
     private double giaThue;
-
-    public DatPhong(String idPhong, String idKH, String name, int thoiGianThue, double giaThue) {
+    
+    public DatPhong(int idDP, String idPhong, String idKH, String name, int thoiGianThue, double giaThue) {
+        this.idDP=idDP;
         this.idPhong = idPhong;
         this.idKH=idKH;
         this.name = name;
         this.thoiGianThue = thoiGianThue;
         this.giaThue = giaThue;
     }
+    public DatPhong(int idDP,String idPhong, String idKH, String name, double giaThue, Date ngayDat, Date ngayTra, int thoiGianThue) {
+        this.idDP=idDP;
+        this.idPhong = idPhong;
+        this.idKH = idKH;
+        this.name = name;
+        this.ngayTra=ngayTra;
+        this.ngayDat = ngayDat;
+        this.thoiGianThue = thoiGianThue;
+        this.giaThue = giaThue;
+    }
 
+    public DatPhong(String idPhong, String idKH, String name, int thoiGianThue, double giaThue) {
+        this.idPhong = idPhong;
+        this.idKH = idKH;
+        this.name = name;
+        this.thoiGianThue = thoiGianThue;
+        this.giaThue = giaThue;
+    }
+    
+    public DatPhong(){
+        
+    }
     public String getIdPhong() {
         return idPhong;
     }
+    public void setNgayDat(Date ngayDat) {
+        this.ngayDat = ngayDat;
+    }
 
-   
+    public void setNgayTra(Date ngayTra) {
+        this.ngayTra = ngayTra;
+    }
+
+    public Date getNgayTra() {
+        return ngayTra;
+    }
+
+    public int getIdDP() {
+        return idDP;
+    }
+
+    public void setIdDP(int idDP) {
+        this.idDP = idDP;
+    }
+
+    
+    public Date getNgayDat() {
+        return ngayDat;
+    }
 
     public String getName() {
         return name;
     }
 
-    public LocalDate getNgayDat() {
-        return ngayDat;
-    }
+   
 
     public int getThoiGianThue() {
         return thoiGianThue;
@@ -63,10 +107,7 @@ public class DatPhong {
         this.name = name;
     }
 
-    public void setNgayDat(LocalDate ngayDat) {
-        this.ngayDat = ngayDat;
-    }
-
+    
     public void setThoiGianThue(int thoiGianThue) {
         this.thoiGianThue = thoiGianThue;
     }
@@ -74,7 +115,13 @@ public class DatPhong {
     public void setGiaThue(double giaThue) {
         this.giaThue = giaThue;
     }
-    public LocalDate ngayTra(){
-        return this.ngayDat.plusDays(thoiGianThue);
+    public double chiPhi(){
+        return this.thoiGianThue*this.giaThue;
     }
+
+    @Override
+    public String toString() {
+        return "DatPhong{" + "idPhong=" + idPhong + ", idKH=" + idKH + ", name=" + name + ", ngayDat=" + ngayDat + ", ngayTra=" + ngayTra + ", thoiGianThue=" + thoiGianThue + ", giaThue=" + giaThue + '}';
+    }
+    
 }

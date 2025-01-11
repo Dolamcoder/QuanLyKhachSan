@@ -7,7 +7,7 @@ import java.awt.event.ActionListener;
 
 public class DangKyView extends JFrame {
 
-    // Khai báo các trường nhập liệu
+    
     private JTextField usernameField;
     private JTextField emailField;
     private JPasswordField passwordField;
@@ -22,13 +22,11 @@ public class DangKyView extends JFrame {
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     this.setLayout(new BorderLayout());
 
-    // Tạo tiêu đề
+   
     JLabel title = new JLabel("Đăng Ký Tài Khoản", SwingConstants.CENTER);
     title.setFont(new Font("Arial", Font.BOLD, 20));
     title.setForeground(Color.BLUE);
     this.add(title, BorderLayout.NORTH);
-
-    // Tạo panel trung tâm chứa các ô nhập liệu
     JPanel formPanel = new JPanel();
     formPanel.setLayout(new GridLayout(4, 2, 10, 10));
     formPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -93,7 +91,7 @@ public class DangKyView extends JFrame {
         return new String(confirmPasswordField.getPassword());
     }
 
-    // Phương thức đóng cửa sổ
+    
     public void close() {
         this.dispose();
     }

@@ -6,6 +6,7 @@ package Controller;
 
 import Dao.RoomDao;
 import Model.Room;
+import View.DSPhongView;
 import View.ThemPhongView;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,6 +38,7 @@ public class ThemPhongController implements ActionListener{
     if (room != null) { // Kiểm tra nếu room không null
         if (rDao.insert(room) > 0) {
             JOptionPane.showMessageDialog(tp, "Thêm phòng thành công");
+            tp.close();
         } else {
             JOptionPane.showMessageDialog(tp, "Thêm phòng không thành công");
         }
